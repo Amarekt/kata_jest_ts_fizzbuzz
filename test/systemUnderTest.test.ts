@@ -1,34 +1,60 @@
-import { SystemUnderTest } from "../src/systemUnderTest"
+import { SystemUnderTest } from "../src/systemUnderTest";
+import 'jest-extended';
 
-const sut = new SystemUnderTest()
-test("quand la valeur est de 3 ou il y a un 3 dans la valeur, Fizz est alors retourné", () => {
-    const result = [];
-    for (let i = 1; i <= 100; i++) {
-      if ((i % 5 === 0 && i % 3 === 0) || (i + '').includes('5') && (i + '').includes('3')) {
-        result.push("FizzBuzz");
-      } else if (i % 3 === 0 || (i + '').includes('3')) {
-        result.push("Fizz");
-      } else if (i % 5 === 0 || (i + '').includes('5')) {
-        result.push("Buzz");
-      } else {
-        result.push(i + '');
-      }
-    }
-})
-// test("quand la valeur est de 5 ou il y a un 5 dans la valeur, Fizz est alors retourné", () => {
-//     expect(sut.fizzbuzz()).toEqual("Buzz")
-// })
-// test("quand la valeur est de 5 ou il y a un 5 dans la valeur, Fizz est alors retourné", () => {
-//     expect(sut.fizzbuzz()).toEqual("Buzz")
-// })
+let sut: SystemUnderTest;
+beforeAll(async () => {
+  sut = new SystemUnderTest();
+});
 
-// test("given getMessage is called, when 'Jérôme' is passed, then 'Hello Jérôme' is returned", () => {
-//     // arrange
-//     const sut = new SystemUnderTest()
-
-//     // act
-//     const actual = sut.getMessage("Jérôme")
-
-//     // assert
-//     expect(actual).toEqual("Hello Jérôme")
-// })
+describe('Tests', () => {
+  it('Un argument de 1 retourne 1', () => {
+    expect(sut.fizzbuzz(1)).toBe(1);
+  })
+  it('Un argument de 2 retourne 2', () => {
+    expect(sut.fizzbuzz(2)).toBe(2);
+  })
+  it('Un argument de 3 retourne Fizz', () => {
+    expect(sut.fizzbuzz(3)).toBe("Fizz");
+  })
+  it('Un argument de 6 retourne Fizz', () => {
+    expect(sut.fizzbuzz(6)).toBe("Fizz");
+  })
+  it('Un argument de 5 retourne Buzz', () => {
+    expect(sut.fizzbuzz(5)).toBe("Buzz");
+  })
+  it('Un argument de 10 retourne Buzz', () => {
+    expect(sut.fizzbuzz(10)=="Buzz").toBeTruthy();
+  })
+  it('Un argument de 15 retourne FizzBuzz', () => {
+    expect(sut.fizzbuzz(15)=="FizzBuzz").toBeTruthy();
+  })
+  it('Un argument de 30 retourne FizzBuzz', () => {
+    expect(sut.fizzbuzz(30)=="FizzBuzz").toBeTruthy();
+  })
+  it("Un argument d'un multiple de 3 ou contient un 3, Fizz est alors retourné", () => {
+    expect(sut.fizzbuzz(13)=="Fizz").toBeTruthy();
+  })
+  it("Un argument d'un multiple de 5 ou contient un 5, Buzz est alors retourné", () => {
+    expect(sut.fizzbuzz(59)=="Buzz").toBeTruthy();
+  })
+  it("Un argument d'un multiple de 5 et de 3 ou contient un 5 et un 3, FizzBuzz est alors retourné", () => {
+    expect(sut.fizzbuzz(53)).toBe("FizzBuzz");
+  })
+  
+  it('53 qui donnes FizzBuzz normalement mais pas cette fois', () => {
+    expect(sut.fizzbuzz(53)=="Buzz").toBeFalsy();
+  })
+  it('affichage des valeurs' , () => {
+    console.log(sut.fizzbuzz(1));
+    console.log(sut.fizzbuzz(2));
+    console.log(sut.fizzbuzz(3));
+    console.log(sut.fizzbuzz(6));
+    console.log(sut.fizzbuzz(5));
+    console.log(sut.fizzbuzz(10));
+    console.log(sut.fizzbuzz(15));
+    console.log(sut.fizzbuzz(30));
+    console.log(sut.fizzbuzz(13));
+    console.log(sut.fizzbuzz(59));
+    console.log(sut.fizzbuzz(53));
+  })
+});
