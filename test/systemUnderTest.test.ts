@@ -1,5 +1,5 @@
-import { SystemUnderTest } from "../src/systemUnderTest";
 import 'jest-extended';
+import { SystemUnderTest } from "../src/systemUnderTest";
 
 let sut: SystemUnderTest;
 beforeAll(async () => {
@@ -7,6 +7,7 @@ beforeAll(async () => {
 });
 
 describe('Tests', () => {
+  // sans toBeTruthy()
   it('Un argument de 1 retourne 1', () => {
     expect(sut.fizzbuzz(1)).toBe(1);
   })
@@ -22,29 +23,31 @@ describe('Tests', () => {
   it('Un argument de 5 retourne Buzz', () => {
     expect(sut.fizzbuzz(5)).toBe("Buzz");
   })
+
+  // avec toBeTruthy()
   it('Un argument de 10 retourne Buzz', () => {
-    expect(sut.fizzbuzz(10)=="Buzz").toBeTruthy();
+    expect(sut.fizzbuzz(10) == "Buzz").toBeTruthy();
   })
   it('Un argument de 15 retourne FizzBuzz', () => {
-    expect(sut.fizzbuzz(15)=="FizzBuzz").toBeTruthy();
+    expect(sut.fizzbuzz(15) == "FizzBuzz").toBeTruthy();
   })
   it('Un argument de 30 retourne FizzBuzz', () => {
-    expect(sut.fizzbuzz(30)=="FizzBuzz").toBeTruthy();
+    expect(sut.fizzbuzz(30) == "FizzBuzz").toBeTruthy();
   })
   it("Un argument d'un multiple de 3 ou contient un 3, Fizz est alors retourné", () => {
-    expect(sut.fizzbuzz(13)=="Fizz").toBeTruthy();
+    expect(sut.fizzbuzz(13) == "Fizz").toBeTruthy();
   })
   it("Un argument d'un multiple de 5 ou contient un 5, Buzz est alors retourné", () => {
-    expect(sut.fizzbuzz(59)=="Buzz").toBeTruthy();
+    expect(sut.fizzbuzz(59) == "Buzz").toBeTruthy();
   })
   it("Un argument d'un multiple de 5 et de 3 ou contient un 5 et un 3, FizzBuzz est alors retourné", () => {
     expect(sut.fizzbuzz(53)).toBe("FizzBuzz");
   })
-  
+
   it('53 qui donnes FizzBuzz normalement mais pas cette fois', () => {
-    expect(sut.fizzbuzz(53)=="Buzz").toBeFalsy();
+    expect(sut.fizzbuzz(53) == "Buzz").toBeFalsy();
   })
-  it('affichage des valeurs' , () => {
+  it('affichage des valeurs', () => {
     console.log(sut.fizzbuzz(1));
     console.log(sut.fizzbuzz(2));
     console.log(sut.fizzbuzz(3));
